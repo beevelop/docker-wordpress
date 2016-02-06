@@ -1,0 +1,50 @@
+#!/bin/bash
+set -eaxm
+
+if [ $# -gt 0 ]; then
+  echo "Found $# arguments. Setting WORDPRESS_DB_* envs..."
+  export WORDPRESS_DB_HOST=$1
+  export WORDPRESS_DB_USER=$2
+  export WORDPRESS_DB_PASSWORD=$3
+  export WORDPRESS_DB_NAME=$4
+fi
+
+: ${DB_HOST:=${WORDPRESS_DB_HOST:-$MYSQL_PORT_3306_TCP_ADDR}}
+
+while ! nc -z $DB_HOST 3306; do
+  echo "Waiting for MySQL database on port 3306..."
+  sleep 2
+done
+
+/entrypoint.sh apache2-foreground &
+
+while [ ! -f /var/www/html/wp-config.php ]
+do
+  echo "Waiting for WP initialization to finish..."
+  sleep 2
+done
+
+sleep 4
+
+if ! $(wp core is-installed --allow-root); then
+  su -s /bin/bash www-data -c 'wp core install --url="$SITE_URL" --title="$SITE_TITLE" --admin_user="$ADMIN_USER" --admin_password="$ADMIN_PASSWORD" --admin_email="$ADMIN_EMAIL" --skip-email'
+fi
+
+{
+  PLUGINS=(${WORDPRESS_PLUGINS//;/ })
+  for plugin in "${PLUGINS[@]}"; do
+    su -s /bin/bash www-data -c 'wp plugin install $plugin'
+    su -s /bin/bash www-data -c 'wp plugin activate $plugin'
+  done
+}
+
+{
+  THEMES=(${WORDPRESS_THEMES//;/ })
+  for theme in "${THEMES[@]}"; do
+    su -s /bin/bash www-data -c 'wp theme install $theme'
+  done
+}
+
+su -s /bin/bash www-data -c 'wp theme activate $WORDPRESS_ACTIVE_THEME'
+
+fg
