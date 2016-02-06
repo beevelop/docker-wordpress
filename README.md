@@ -1,3 +1,8 @@
+[![Travis](https://img.shields.io/travis/beevelop/docker-wordpress.svg?style=flat-square)](https://travis-ci.org/beevelop/docker-wordpress)
+[![Docker Pulls](https://img.shields.io/docker/pulls/beevelop/wordpress.svg?style=flat-square)](https://links.beevelop.com/d-wordpress)
+[![ImageLayer](https://badge.imagelayers.io/beevelop/wordpress:latest.svg)](https://imagelayers.io/?images=beevelop/wordpress:latest)
+[![Beevelop](https://links.beevelop.com/honey-badge)](https://beevelop.com)
+
 # WordPress for Docker on Steroids
 
 Based on the [official WordPress](https://hub.docker.com/_/wordpress/) image this image fully automates your WordPress installation with the help of [wp-cli](http://wp-cli.org/).
