@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+script:
+  - docker build -t wp .
+  - docker run -d -e MYSQL_ROOT_PASSWORD=Un1c0rn --name mysql mysql
+  - docker run -d -e WORDPRESS_PLUGINS="jetpack;wordfence" -e WORDPRESS_ACTIVE_THEME=responsive -e WORDPRESS_THEMES="responsive" --name wp --link mysql:mysql wp
+  - docker exec wp /bin/sh -c "apt-get update && apt-get install curl -y --no-install-recommends && curl -f localhost:80"
