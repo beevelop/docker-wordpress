@@ -21,6 +21,20 @@ docker run -d -p 8080:80 \
            --link mysql:mysql beevelop/wordpress:latest
 ```
 
+## Use as base image
+This image is optimized to be used as a base image. You can simply override all ENVs in you own Dockerfile to make your own tailored image.
+```Dockerfile
+FROM beevelop/wordpress:latest
+
+# e.g. copy your own theme or plugins
+# this is quite awesome for CI solutions with continuous deployment in mind
+COPY ./ /usr/src/wordpress/wp-content/themes/my-theme/
+
+# you can simply override all the ENVs from the configuration chapter
+ENV WORDPRESS_PLUGINS "password-protected;wordfence"
+ENV WORDPRESS_ACTIVE_THEME "my-theme"
+```
+
 ## Configuration
 - `SITE_URL` (defaults to `https://example.com`)
 - `SITE_TITLE` (defaults to "DockerPress")
