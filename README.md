@@ -1,6 +1,9 @@
-[![Travis](https://img.shields.io/travis/beevelop/docker-wordpress.svg?style=flat-square)](https://travis-ci.org/beevelop/docker-wordpress)
-[![Docker Pulls](https://img.shields.io/docker/pulls/beevelop/wordpress.svg?style=flat-square)](https://links.beevelop.com/d-wordpress)
-[![ImageLayer](https://badge.imagelayers.io/beevelop/wordpress:latest.svg)](https://imagelayers.io/?images=beevelop/wordpress:latest)
+[![Travis](https://shields.beevelop.com/travis/beevelop/docker-wordpress.svg?style=flat-square)](https://travis-ci.org/beevelop/docker-wordpress)
+[![Pulls](https://shields.beevelop.com/docker/pulls/beevelop/wordpress.svg?style=flat-square)](https://links.beevelop.com/d-wordpress)
+[![Layers](https://shields.beevelop.com/docker/image/layers/beevelop/wordpress/latest.svg?style=flat-square)](https://links.beevelop.com/d-wordpress)
+[![Size](https://shields.beevelop.com/docker/image/size/beevelop/wordpress/latest.svg?style=flat-square)](https://links.beevelop.com/d-wordpress)
+[![Release](https://shields.beevelop.com/github/release/beevelop/docker-wordpress.svg?style=flat-square)](https://github.com/beevelop/docker-wordpress/releases)
+![Badges](https://shields.beevelop.com/badge/badges-7-brightgreen.svg?style=flat-square)
 [![Beevelop](https://links.beevelop.com/honey-badge)](https://beevelop.com)
 
 # WordPress for Docker on Steroids
