@@ -1,4 +1,4 @@
-FROM wordpress
+FROM wordpress:4.7
 
 MAINTAINER Maik Hummel <m@ikhummel.com>
 
