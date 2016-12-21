@@ -16,7 +16,7 @@ while ! nc -z $DB_HOST 3306; do
   sleep 2
 done
 
-/entrypoint.sh apache2-foreground &
+docker-entrypoint.sh apache2-foreground &
 
 while [ ! -f /var/www/html/wp-config.php ]
 do
